@@ -190,6 +190,64 @@ src/
 - Integration with symbol servers for assemblies without metadata
 - Plugin system for custom metadata sources
 
+## Sample Test DLL for Development
+
+For development and testing, we can use a well-known assembly with embedded metadata:
+
+### ASP.NET Core Assembly Example
+**File**: `Microsoft.AspNetCore.App.dll` (from .NET 8+ installation)
+**Location**: Usually found in `%ProgramFiles%\dotnet\shared\Microsoft.AspNetCore.App\<version>\`
+
+**Expected Metadata Attributes:**
+```csharp
+[assembly: AssemblyInformationalVersion("8.0.0+5535e31a712343a63f5d7d796cd874e563e5ac14")]
+[assembly: AssemblyMetadata("RepositoryUrl", "https://github.com/dotnet/aspnetcore")]
+[assembly: AssemblyMetadata("CommitHash", "5535e31a712343a63f5d7d796cd874e563e5ac14")]
+[assembly: AssemblyMetadata("SourceCommitUrl", "https://github.com/dotnet/aspnetcore/tree/5535e31a712343a63f5d7d796cd874e563e5ac14")]
+```
+
+**Expected Tool Output:**
+```bash
+$ get-source-repository-url Microsoft.AspNetCore.App.dll
+https://github.com/dotnet/aspnetcore 5535e31a712343a63f5d7d796cd874e563e5ac14
+
+$ get-source-repository-url --json Microsoft.AspNetCore.App.dll
+{"repository_url":"https://github.com/dotnet/aspnetcore","commit_sha":"5535e31a712343a63f5d7d796cd874e563e5ac14"}
+```
+
+### Alternative Test Assemblies
+
+**System.Text.Json.dll** (from .NET 8+ runtime):
+- Repository: `https://github.com/dotnet/runtime`
+- Contains similar metadata structure
+- Easily accessible on any .NET 8+ system
+
+**Microsoft.Extensions.Hosting.dll**:
+- Repository: `https://github.com/dotnet/runtime`
+- Part of extensions framework
+- Good for testing different metadata patterns
+
+### Smoke Test Validation
+
+The tool should successfully extract:
+1. **Repository URL** from `AssemblyMetadata("RepositoryUrl")` or inferred from commit URL
+2. **Commit SHA** from `AssemblyInformationalVersion` (after '+') or `AssemblyMetadata("CommitHash")`
+3. **Format correctly** as space-separated values or JSON
+4. **Handle gracefully** when metadata is missing or malformed
+
+### Creating Test Data
+
+For comprehensive testing, we can create minimal test assemblies:
+
+```csharp
+// TestAssemblyWithMetadata - compile with .NET 8+ SDK in git repo
+[assembly: AssemblyMetadata("RepositoryUrl", "https://github.com/test/repo")]
+[assembly: AssemblyInformationalVersion("1.0.0+abcd1234567890abcd1234567890abcd12345678")]
+
+// TestAssemblyWithoutMetadata - compile without git metadata
+[assembly: AssemblyVersion("1.0.0.0")]
+```
+
 ## Usage Scenarios for Coding Agents
 
 1. **Source Code Analysis**: Agent needs to analyze source that corresponds to a compiled library
