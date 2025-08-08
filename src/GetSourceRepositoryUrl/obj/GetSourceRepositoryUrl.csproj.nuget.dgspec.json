@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/jflam/src/get-source/src/GetSourceRepositoryUrl/GetSourceRepositoryUrl.csproj": {}
+  },
+  "projects": {
+    "/Users/jflam/src/get-source/src/GetSourceRepositoryUrl/GetSourceRepositoryUrl.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/jflam/src/get-source/src/GetSourceRepositoryUrl/GetSourceRepositoryUrl.csproj",
+        "projectName": "get-source-repository-url",
+        "projectPath": "/Users/jflam/src/get-source/src/GetSourceRepositoryUrl/GetSourceRepositoryUrl.csproj",
+        "packagesPath": "/Users/jflam/.nuget/packages/",
+        "outputPath": "/Users/jflam/src/get-source/src/GetSourceRepositoryUrl/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/jflam/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "Microsoft.NET.ILLink.Tasks": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.6, )",
+              "autoReferenced": true
+            },
+            "System.CommandLine": {
+              "target": "Package",
+              "version": "[2.0.0-beta4.22272.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.301/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
